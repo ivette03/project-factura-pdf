@@ -1,0 +1,111 @@
+:root{
+    --primario:#070608;
+    --secundario:#c4bfbf;
+    --separacion:5rem;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+   
+}
+/*HEADER*/
+header{
+    overflow: hidden;
+    background-color: rgb(18, 17, 18);
+    width: 100vw;
+    height:100px ;
+}
+header .container-fluid{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+header .nav-items{
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 2rem;
+}
+.nav-items:hover{
+    background-color: rgb(110, 240, 210);
+}
+.nav-items a:hover{
+    color: black;
+}
+/*FIN HEADER*/
+
+
+
+
+
+.container-form{
+    margin: 0 auto;
+    background-color: var(--primario);
+    
+    border-radius: 1rem;
+    margin-top: var(--separacion);
+}
+.campos-form{
+    display: flex;
+    justify-content: center;
+    
+}
+.centrado-label{
+    text-align: center;
+    font-size: 20px;
+    margin:1rem 0 1rem 0;
+    color:var(--secundario);
+    font-weight: 500;
+}
+.nombre-tienda{
+    font-size: 3rem;
+    padding: calc(var(--separacion)/3)0;
+    padding-bottom:0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 900;
+    color: rgb(146, 0, 151);
+    margin-bottom: 0;
+}
+section{
+    background-color:  rgb(146, 0, 151);
+}
+
+
+li{
+    padding: 5px;
+}
+nav a:hover{
+    background-color: rgb(186, 42, 214);
+    border-radius: 5px;
+    padding: 1rem;
+    
+}/**fin header**/
+
+/**tabla**/
+.tabla{
+    width: 50%;
+    border-collapse:collapse;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+td, th {
+    border: 1px solid black;
+    padding: 8px;
+}
+/**imagen**/
+.logo{
+    width: 10%;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px;
+}
+.login{
+    background-color: rgb(146, 0, 151);
+    display: flex;
+    justify-content: center;
+    
+}

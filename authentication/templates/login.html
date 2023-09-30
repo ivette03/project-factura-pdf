@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<style>
+  body {
+      background-image: url("{% static 'img/productos-fondo.jpg' %}");
+      background-size:cover;
+  }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="card">
+    <div class="card-header bg-dark ">
+      <h4 class="text-center text-light">Iniciar sesión</h4>
+    </div>
+    <div class="card-body mb-2">
+      <form action="{% url 'signin' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-2">
+          <label class="my-3" for="{{ form.username.id_for_label }}">Usuario:</label>
+        </div>
+        <div>
+          {{ form.username }}
+        </div>
+        <div class="mb-2">
+          <label class="my-3" for="{{ form.password.id_for_label }}">Contraseña:</label>
+        </div>
+        <div>
+          {{ form.password }}
+        </div>
+        <div class="d-grid my-2">
+          <button type="submit" class="btn btn-primary btn-block">Iniciar Sesion</button>
+        </div>
+        <div class="d-grid">
+          <a href="{% url 'signup' %}"class="btn btn-secondary btn-block">Registrate</a>
+        </div>
+        {{error}}
+      </form>
+    </div>
+  </div>
+</div>
+
+   
+{% endblock %}

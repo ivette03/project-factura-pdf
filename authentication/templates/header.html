@@ -1,0 +1,27 @@
+{% block header %}
+{% load static %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'estilos/styles.css' %}">
+<header>
+    <div class="container-fluid">
+        <div class="nav-items">
+            <a href="{% url 'home' %}">Home</a>
+        </div>
+        <div class="nav-items">   
+            <a href="{% url 'clients' %}">Clientes</a>
+        </div>
+        <div class="nav-items">   
+            <a href="#">Ventas</a>
+        </div>
+        <div class="nav-items">   
+            <a href="#">Productos</a>
+        </div>
+        <div class="nav-items">   
+            <a href="#">Cerrar sesion</a>
+        </div>
+       
+
+    </div>
+</header>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
+{% block content %}
+{% load static %}
+
+
+<div class="container">
+    <h1 class="text-dark mt-5"> Listado  de  clientes </h1>
+    <a href="{% url 'create_client' %}"  class="btn btn-primary my-3">
+        Agregar cliente
+    </a>
+    
+            <div>
+                <form class="d-flex justify-content-center mx-3" role="search">
+                  <input class="form-control" type="search" placeholder="Ingrese nombre" aria-label="Search"  value="{{ request.GET.buscar }}" name="buscar">
+                  <button class="btn btn-outline-secondary mx-3" type="submit">Buscar</button>
+                </form>
+            </div>
+    <div class="text-center my-3 text-white">
+       
+        <div class="bg-danger">
+            {{error}}
+        </div>            
+    </div>
+
+
+<!--Tabla clientes-->
+<table class="table table-sm mt-5">
+    <tr>
+        <td><strong>Nombre</strong></td>
+        <td><strong>Apellido</strong></td>
+        <td><strong>celular</strong></td>
+        <td><strong>Cedula</strong></td>
+        <td><strong>Dirección</strong></td>
+        <td><strong>Opciones</strong></td> 
+    <tr>
+    <!--listado clientes-->
+    {% for client in clients %}  
+    <tr>
+        <td>{{client.client_name}}</td>
+        <td>{{client.last_name}}</td>
+        <td>{{client.address}}</td>
+        <td>{{client.identy}}</td>
+        <td>{{client.number_phone}}</td>
+        <td>
+        <form method="POST" action="{% url 'delete_client' id=client.id %}">
+            {% csrf_token %}
+            <button class="btn">
+                <img src="{% static 'img/delete.png' %}">
+            </button>
+            <a href="#">
+                <img src="{% static 'img/update.png' %}">
+            </a>
+        </form>
+        </td>
+    </tr>  
+    {% endfor %}
+</table>
+<!--fin clientes-->
+{% endblock %}

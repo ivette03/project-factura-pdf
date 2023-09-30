@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'estilos/styles.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'img/productos-fondo.jpg' %}");
+            background-size:cover;
+        }
+      </style>
+      
+      <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card">
+          <div class="card-header bg-dark ">
+            <h4 class="text-center text-light">REGISTRATE</h4>
+          </div>
+          <div class="card-body mb-2">
+            <form action="{% url 'signup' %}" method="POST">
+              {% csrf_token %}
+              <div class="mb-2">
+                <label class="my-3" for="{{ form.username.id_for_label }}">Usuario:</label>
+              </div>
+              <div>
+                {{ form.username }}
+              </div>
+              <div class="mb-2">
+                <label class="my-3" for="{{ form.password.id_for_label }}">Contraseña:</label>
+              </div>
+              <div>
+                {{ form.password1 }}
+              </div>
+              <div class="mb-2">
+                <label class="my-3" for="{{ form.password.id_for_label }}">Confirmar contraseña:</label>
+              </div>
+              <div>
+                {{ form.password2 }}
+              </div>
+              <div class="d-grid my-2">
+                <button type="submit" class="btn btn-primary btn-block">CREAR CUENTA</button>
+              </div>
+              <div class="d-grid my-2">
+                <a href="{% url 'signin' %}"class="btn btn-primary btn-block">Iniciar Sesion</a>
+              </div>
+              
+              {{error}}
+            </form>
+          </div>
+        </div>
+      </div>
+      
+ 
+{% endblock %}
+
+
+
+
+
+
+
+
