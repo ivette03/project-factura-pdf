@@ -7,7 +7,7 @@
 
 
 <div class="container">
-    <h1 class="text-dark mt-5"> Listado  de  clientes </h1>
+    <h1 class="text-dark mt-5 text-center"> Listado  de  clientes </h1>
     <a href="{% url 'create_client' %}"  class="btn btn-primary my-3">
         Agregar cliente
     </a>
@@ -50,7 +50,7 @@
             <button class="btn">
                 <img src="{% static 'img/delete.png' %}">
             </button>
-            <a href="#">
+            <a href="{% url 'client_detail' id=client.id %}">
                 <img src="{% static 'img/update.png' %}">
             </a>
         </form>

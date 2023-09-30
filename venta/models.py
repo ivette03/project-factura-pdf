@@ -29,6 +29,7 @@ class Vendor(models.Model):
 #CATEGORIA
 class Category(models.Model):
     name=models.CharField(max_length=50)
+    img_categories=models.ImageField(upload_to="categorias/", default="imagen.png")
     class Meta:
         db_table="category"
         verbose_name="category"
@@ -39,6 +40,7 @@ class Category(models.Model):
 class Product(models.Model): 
     product_name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    img=models.ImageField(upload_to="productos/", default="imagen.png")
     category=models.ForeignKey(Category, on_delete=models.CASCADE,default='category')
     vendor=models.ForeignKey(Vendor,on_delete=models.CASCADE,default='vendor')
     stock=models.IntegerField(default=1,verbose_name="stock")

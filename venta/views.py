@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect,HttpResponse
-from .models import Client
+from .models import Client,Category
 from .forms import ClientForm
 #paginator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -38,9 +38,24 @@ def create_client(request):
         form_client = ClientForm(request.POST)
         if form_client.is_valid():
             form_client.save()
-            return redirect('clients')
+            return redirect('create_client')
     else:
         return render(request, 'clientes/create_client.html', {'form_client': form_client})
+def client_detail(request, id):
+    cliente = get_object_or_404(Client, pk=id)
+    if request.method == 'GET':
+        form_detail = ClientForm(instance=cliente)
+        return render(request, 'clientes/client_detail.html', {'form_detail':form_detail})
+    else:
+        form_detail = ClientForm(request.POST, instance=cliente)
+        if form_detail.is_valid():
+            form_detail.save()
+            return redirect('clients')
+        else:
+            print(form_detail.errors)  # Imprime errores del formulario en la consola
+def categories(request):
+    categories=Category.objects.all()
+    return render(request,'productos/categorias.html',{'categories':categories})
         
             
     
