@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <a class="btn btn-primary mt-5" href="{% url 'categories' %}">
+        <img src="{% static 'iconos/volver.png'%}">
+        Volver
+    </a>
+    <h1 class="my-5 text-center">Productos en la categoría "{{ categoria.name }}"</h1>
+    <div>
+        <form class="d-flex justify-content-center mx-3" role="search">
+          <input class="form-control" type="search" placeholder="Ingrese nombre" aria-label="Search"  value="{{ request.GET.buscar }}" name="buscar">
+          <button class="btn btn-outline-secondary mx-3" type="submit">Buscar</button>
+        </form>
+    </div>
+    <div class="text-center my-3 text-white">
+       
+        <div class="bg-danger">
+            {{error}}
+        </div>            
+    </div>
+    <div class="row">
+        {% for producto in product_paginated %}
+            <div class="col-md-3 mb-4 my-5">
+                <div class="card">                 
+                    <img src="{{ producto.img.url }}" class="card-img-top" alt="{{ producto.name }}" width="350px" height="300px">                         
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.name }}</h5>
+                        <p class="card-text">Stock: {{ producto.stock}}</p>
+                        <p class="card-text">Precio: ${{ producto.price }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No hay productos en esta categoría.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

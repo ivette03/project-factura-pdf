@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
+{% block content %}
+
+<div>
+    <h1>ToteBag Anahion</h1>
+    <p>Tienda de bolsos</p>
+</div>
+
+
+<h2>Datos de la compañia</h2>
+<form>
+    <p>Dirección: Urdesa central Av las monjas</p>
+    <p>Telefono: 0985882565 - 23456789</p>
+</form>
+<form>
+    <table>
+      <h1>Factura Generada</h1>
+      <tr>
+        <td>Número de factura:</td>
+        <td colspan="2">{{ factura.invoice_number }}</td>
+      </tr>
+      <tr>
+        <td>Fecha:</td>
+        <td colspan="2">{{ factura.date }}</td>
+      </tr>
+      <tr>
+        <td>Cliente:</td>
+        <td colspan="2">{{ factura.client }}</td>
+      </tr>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+      </tr>
+      {% for producto in factura.product.all %}
+        <tr>
+          <td>{{ producto.name}}</td>
+          <td>${{ producto.price }}</td>
+          <td>{{ factura.quantity }}</td>
+        </tr>
+      {% endfor %}
+   
+      <tr>
+        <td>Subtotal:</td>
+        <td colspan="2">${{ factura.subtotal }}</td>
+      </tr>
+      <tr>
+        <td>Total:</td>
+        <td colspan="2">${{ factura.total }}</td>
+      </tr>
+    </table>
+  </form>
+  {% endblock %}

@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Client
+from .models import Client,Invoice
+
 
 class ClientForm(ModelForm):
     class Meta:
@@ -13,4 +14,17 @@ class ClientForm(ModelForm):
             'identy':forms.TextInput(attrs={'class':'form-control'}),
             'number_phone':forms.TextInput(attrs={'class':'form-control'})       
         }
-       
+class InvoiceForm(ModelForm):
+    class Meta:
+        model=Invoice
+        fields=['invoice_number','date','client','product','quantity']
+        widgets={
+            'invoice_number':forms.TextInput(attrs={'class':'form-control'}),
+            'date':forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'client':forms.Select(attrs={'class':'form-control'}),
+            'product':forms.SelectMultiple(attrs={'class':'form-control'}),
+            'quantity':forms.TextInput(attrs={'class':'form-control'}),
+            
+            
+            
+        }

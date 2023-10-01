@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    {% load static %}
+  
+   <form>
+    <table>
+      <h1>Factura Generada</h1>
+      <tr>
+        <td>Número de factura:</td>
+        <td colspan="2">{{ factura.invoice_number }}</td>
+      </tr>
+      <tr>
+        <td>Fecha:</td>
+        <td colspan="2">{{ factura.date }}</td>
+      </tr>
+      <tr>
+        <td>Cliente:</td>
+        <td colspan="2">{{ factura.client}}</td>
+      </tr>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+      </tr>
+      {% for producto in factura.product.all %}
+        <tr>
+          <td>{{ producto.product_name }}</td>
+          <td>${{ producto.price }}</td>
+          <td>{{ factura.quantity }}</td>
+        </tr>
+      {% endfor %}
+   
+      <tr>
+        <td>Subtotal:</td>
+        <td colspan="2">${{ factura.subtotal }}</td>
+      </tr>
+      <tr>
+        <td>Total:</td>
+        <td colspan="2">${{ factura.total }}</td>
+      </tr>
+    </table>
+    <div class="d-flex justify-content-center align-items-center my-2">
+        <a class="btn btn-danger mx-2" href="{% url 'generar_pdf' id=factura.id %}">IMPRIMIR FACTURA</a>
+    </div>
+   
+  </form>
+  
+   </div>
+
+</div>
+{% endblock %}
