@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
+{% block content %}
+<div class="container mt-5" >
+    <h2>Datos de Producto</h2>
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                {{ form_product }}
+            </div>      
+            <div class="bg-secondary text-light">
+                {% if alerta %}
+                <p>{{alerta}}</p>
+                {% endif %}
+            </div>
+            <div class="mt-3">
+              <button class="btn btn-primary">Guardar</button>
+              <a  class="btn btn-primary" href="{% url 'categories'%}">Volver</a>
+            </div>          
+        </form>
+    </div>
+</div>
+{% endblock %}

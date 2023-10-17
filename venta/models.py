@@ -15,17 +15,6 @@ class Client(models.Model):
     def __str__(self):
         return '{}'.format(self.client_name + " " + self.last_name)
 #PROVEEDOR
-class Vendor(models.Model):
-    vendor_name=models.CharField(max_length=200)
-    address=models.CharField(max_length=205)
-    number_phone=models.CharField(max_length=10)
-    email=models.EmailField()
-    class Meta:
-        db_table="vendor"
-        verbose_name="the vendor"
-        verbose_name_plural="vendors"
-    def __str__(self):
-        return self.vendor_name
 #CATEGORIA
 class Category(models.Model):
     name=models.CharField(max_length=50)
@@ -42,7 +31,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     img=models.ImageField(upload_to="productos/", default="imagen.png")
     category=models.ForeignKey(Category, on_delete=models.CASCADE,default='category')
-    vendor=models.ForeignKey(Vendor,on_delete=models.CASCADE,default='vendor')
     stock=models.IntegerField(default=1,verbose_name="stock")
     class Meta:
         db_table = "product"
@@ -60,6 +48,7 @@ class Invoice(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    active=models.BooleanField(default=True)
 
     def __str__(self):
         return f"Factura {self.numero_factura} - {self.cliente}"

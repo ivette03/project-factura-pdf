@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import login,logout,authenticate #este login va acrear un cookie por nosotros
 from django.db import IntegrityError
-
+from django.contrib.auth.decorators import login_required
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html', {'form': UserCreationForm})
@@ -28,9 +28,11 @@ def signup(request):
                     'error':"Contraseñas no coinciden"
         })
 #cerrar sesion
+@login_required
 def signout(request):
     logout(request)
     return redirect('signin')
+@login_required
 def home(request):
     return render(request,'home.html')
 #inicio sesion    

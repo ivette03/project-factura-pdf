@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <h2 class="text-center mt-5 display-2">Crea tu producto aqui</h2>
+   <div class="mt-5">
+      <form method='POST' action="{% url 'crear_producto' %}"  enctype="multipart/form-data">
+         {% csrf_token %}
+            {{product_form}}
+          <div class="d-flex justify-content-center my-2">
+              <input class="btn btn-primary " type="submit" value="GUARDAR PRODUCTO">
+          </div>
+       
+      </form>   
+   </div>
+</div>
+{% endblock %}

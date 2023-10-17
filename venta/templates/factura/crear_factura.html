@@ -5,13 +5,11 @@
 {% block content %}
 {% load static %}
 <div class="container">
-   <h2 class="text-center mt-5">Realiza tu factura aqui</h2>
+   <h2 class="text-center mt-5 display-2">Realiza tu factura aqui</h2>
    <div class="mt-5">
       <form method='POST' action="{% url 'create_factura' %}">
          {% csrf_token %}
-         <table class="table">
             {{form_factura}}
-         </table>
           <div class="d-flex justify-content-center my-2">
               <input class="btn btn-primary " type="submit" value="GENERAR FACTURA">
           </div>

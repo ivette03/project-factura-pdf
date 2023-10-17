@@ -4,12 +4,11 @@
 {% endblock %}
 {% block content %}
 
-<div class="container">
+<div class="container d-flex justify-content-center align-items-center">
     {% load static %}
-  
-   <form>
-    <table>
-      <h1>Factura Generada</h1>
+   <form >
+    <table class="text-center mt-5">
+      <h1 class="mt-3">Factura Generada</h1>
       <tr>
         <td>Número de factura:</td>
         <td colspan="2">{{ factura.invoice_number }}</td>

@@ -9,6 +9,9 @@
         <img src="{% static 'iconos/volver.png'%}">
         Volver
     </a>
+    <a class="btn btn-primary mt-5" href="{% url 'crear_producto' %}">
+       Agregar Producto
+    </a>
     <h1 class="my-5 text-center">Productos en la categoría "{{ categoria.name }}"</h1>
     <div>
         <form class="d-flex justify-content-center mx-3" role="search">
@@ -25,17 +28,40 @@
     <div class="row">
         {% for producto in product_paginated %}
             <div class="col-md-3 mb-4 my-5">
-                <div class="card">                 
-                    <img src="{{ producto.img.url }}" class="card-img-top" alt="{{ producto.name }}" width="350px" height="300px">                         
-                    <div class="card-body">
-                        <h5 class="card-title">{{ producto.name }}</h5>
+                <div class="card">      
+                       <img src="{{ producto.img.url }}" class="card-img-top" alt="{{ producto.name }}" width="350px" height="300px">                           
+                       <div class="card-body">
+                        <h5 class="card-title">{{ producto.product_name }}</h5>
                         <p class="card-text">Stock: {{ producto.stock}}</p>
                         <p class="card-text">Precio: ${{ producto.price }}</p>
+                        <div class="d-flex ">
+                            <form method="POST"  action="{% url 'eliminar_producto' id=producto.id %}">
+                                {% csrf_token %}
+                                <button type="submit"  class=" btn btn-danger text-light mx-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="30px" height="30px">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </form>
+                            <form method="POST"  action="{% url 'editar_producto' id=producto.id %}">
+                                {% csrf_token %}
+                                <a  href="{% url 'editar_producto' id=producto.id %}" class=" btn btn-secondary text-light">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"  width="30px" height="30px">
+                                        <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
+                                        <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
+                                      </svg>
+                                      
+                                </a>
+                            </form>
+                        
+                       </div>
+                       
+                        
                     </div>
                 </div>
             </div>
         {% empty %}
-            <p>No hay productos en esta categoría.</p>
+            <p class="text-center">No hay productos en esta categoría.</p>
         {% endfor %}
     </div>
 </div>

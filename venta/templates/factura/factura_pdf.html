@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
-{% block header %}
-{% include 'header.html' %}
-{% endblock %}
 {% block content %}
+{% load static %}
 
-<div>
-    <h1>ToteBag Anahion</h1>
-    <p>Tienda de bolsos</p>
+<style>
+  .bg-color{
+    background-color: rgb(230, 121, 215);
+  }
+  .text-center{
+    text-align: center;
+  }
+  .mt{
+    margin-top:  1rem;
+  }
+  .p{
+    padding-top: 1rem;
+  }
+  .color{
+    color: blue;
+    font-weight: 900;
+
+  }
+</style>
+<div class="p">
+    <h1 class="bg-color text-center">ToteBag Anahion</h1>
+    <p class="text-center">Tienda de bolsos</p>
 </div>
 
 
@@ -19,8 +36,8 @@
     <table>
       <h1>Factura Generada</h1>
       <tr>
-        <td>Número de factura:</td>
-        <td colspan="2">{{ factura.invoice_number }}</td>
+        <td >Número de factura:</td>
+        <td  colspan="2">{{ factura.invoice_number }}</td>
       </tr>
       <tr>
         <td>Fecha:</td>
@@ -31,26 +48,29 @@
         <td colspan="2">{{ factura.client }}</td>
       </tr>
       <tr>
-        <th>Producto</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
+        <th  class="text-center">Producto</th>
+        <th  class="text-center">Precio</th>
+        <th  class="text-center">Cantidad</th>
       </tr>
       {% for producto in factura.product.all %}
         <tr>
-          <td>{{ producto.name}}</td>
-          <td>${{ producto.price }}</td>
-          <td>{{ factura.quantity }}</td>
+          <td  class="text-center">{{ producto.product_name }}</td>
+          <td  class="text-center">${{ producto.price }}</td>
+          <td  class="text-center">{{ factura.quantity }}</td>
         </tr>
       {% endfor %}
-   
-      <tr>
+    <div>
+      <tr  class="p color">
         <td>Subtotal:</td>
-        <td colspan="2">${{ factura.subtotal }}</td>
+        <td colspan="3">${{ factura.subtotal }}</td>
       </tr>
-      <tr>
+      <tr  class=" color">
         <td>Total:</td>
-        <td colspan="2">${{ factura.total }}</td>
+        <td  colspan="3">${{ factura.total }}</td>
       </tr>
+
+    </div>
+      
     </table>
   </form>
   {% endblock %}
