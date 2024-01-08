@@ -9,19 +9,8 @@ a{
     color: white;
    
 }
-/*HEADER*/
-header{
-    overflow: hidden;
-    background-color: rgb(18, 17, 18);
-    width: 100vw;
-    height:100px ;
-}
-header .container-fluid{
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-header .nav-items{
+
+.nav-items{
     justify-content: center;
     align-items: center;
     padding: 10px;

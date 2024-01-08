@@ -2,7 +2,7 @@
 {% load static %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'estilos/styles.css' %}">
-<header>
+<nav class="nav">
     <div class="container-fluid">
         <div class="nav-items">
             <a href="{% url 'home' %}">Home</a>
@@ -12,6 +12,9 @@
         </div>
         <div class="nav-items">   
             <a href="{% url 'create_factura'%}">Facturar</a>
+        </div>
+        <div class="nav-items">   
+            <a href="{% url 'crear_producto'%}">crear producto</a>
         </div>
         <div class="nav-items">   
             <a href="{% url 'categories'%}">Productos</a>
@@ -25,6 +28,6 @@
        
 
     </div>
-</header>
+</nav>
 
 {% endblock %}
